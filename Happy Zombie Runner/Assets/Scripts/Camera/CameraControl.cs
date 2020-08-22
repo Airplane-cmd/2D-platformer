@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+    //скрипт камеры для слежки за игроком.
+    //это не мой скрипт, скопировал с ютуба
+    //пока сам не разобрался, как работает, но двигается камера красиво :)
+    //как появится время обязательно закоменчу в подробностях
+
     public float dumping = 1.5f;
     public Vector2 offset = new Vector2(2f, 1f);
     public bool isLeft;

@@ -8,6 +8,9 @@ public class ParallaxClouds : MonoBehaviour
     public float endPositionX;
     public float speed;
 
+    //Функция параллакса для облаков, передвигаем их, пока они не будут на конечной позиции
+    //После возвращаем их на стартовую позицию
+
     private void FixedUpdate()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);

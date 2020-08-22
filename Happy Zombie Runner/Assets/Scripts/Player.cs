@@ -20,12 +20,18 @@ public class Player : MonoBehaviour
     public float rayDistance;
     public float checkRadius;
 
+
+    // Awake срабатывает в самом начале. Обычно используется для кэширования. Функция Unity
     private void Awake()
     {
+        // берём компоненты, навешенные на сам объект и его потомков
         rb2D = GetComponent<Rigidbody2D>();
+        // эти компоненты находятся в Sprite, поэтому пишем GetComponentInChildren<>
         animator = GetComponentInChildren<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
     }
+
+    // FixedUpdate - больше подходит для обновлений с использованием физики. Функция Unity
     private void FixedUpdate()
     {
         StateUpdate();
@@ -33,20 +39,27 @@ public class Player : MonoBehaviour
         Move();
     }
 
+
+    // Update - обновляет кадры. Функция Unity
     private void Update()
     {
         UI_Controller();
     }
 
+    // Функция для проверки земли под ногами
     private void StateUpdate()
     {
-        onGrounded = Physics2D.OverlapCircle(legsRayPos.position, checkRadius, groundLayer);
+        //Cоздаем невидимый круг вокруг объекта, который проверяет столкновение с другими объектами слоя groundLayer
+        onGrounded = Physics2D.OverlapCircle(legsRayPos.position, checkRadius, groundLayer); //Один из способов проверить землю под ногами. 
+        //onGrounded = true если есть столкновение
     }
 
+    //функция движения с помощью кнопок
     private void Move()
     {
         if (Input.GetKey(KeyCode.D))
         {
+            //простая функция передвижения, подрубаем анимацию, меняем направление, поворачиваем спрайт в нужное направление.
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             animator.SetBool("canMove", true);
             direction = -1;
@@ -62,11 +75,15 @@ public class Player : MonoBehaviour
 
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) && onGrounded)
         {
+            //Гасим ускорение у rigidbody2D, чтобы не было сопротивлений и багов.
             rb2D.velocity = Vector3.zero;
-            rb2D.AddForce(Vector2.up * forceOfJump, ForceMode2D.Force);
+            rb2D.AddForce(Vector2.up * forceOfJump, ForceMode2D.Force); //AddForce - функция rigidbody2D
+            //AddForce(направление движения силы, модификация силы (в 2D есть Force и Impulse)
         }
     }
 
+
+    //Функция контроля графики. Можешь не вникать, будем под моим контролем
     private void UI_Controller()
     {
         if (health < 0)
@@ -84,16 +101,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Функция получения дамага от мобов. ОНА ПУБЛИЧНАЯ!!!
+    //В последствии надо будет изменить. Пока получает только один аргумент
     public void GetDamage(float damageFromEnemy)
     {
-        StartCoroutine(changeAnimation());
-        print(damageFromEnemy / 100f);
-        health = health - (damageFromEnemy / 100f);
-        rb2D.velocity = Vector3.zero;
+        StartCoroutine(changeAnimation()); //Это куратина (Объясню в дс)
+        health = health - (damageFromEnemy / 100f); // Здоровице отнимается, дамаг врагов делится на сто, по сколько здоровье принято у нас за 1
+        rb2D.velocity = Vector3.zero; // Отталкиваем игрока в противопложную сторону его направления.
         rb2D.AddForce(new Vector2(1f, -0.5f * -direction) * direction * repulsiveForce, ForceMode2D.Impulse);
     }
 
-    IEnumerator changeAnimation()
+    IEnumerator changeAnimation() // Это куратина, можешь пока не вникать (Но это крутая вещь)
     {
         animator.SetBool("getDamage", true);
         yield return new WaitForSeconds(.3f);
