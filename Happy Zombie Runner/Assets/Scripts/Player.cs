@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private bool onGrounded = false;
 
     public Transform healthBar;
-    public Transform legsRayPos;
+    public Transform legsPos;
     public LayerMask groundLayer;
     public float repulsiveForce;
     public float rayDistance;
@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
         // эти компоненты находятся в Sprite, поэтому пишем GetComponentInChildren<>
         animator = GetComponentInChildren<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        
     }
 
     // FixedUpdate - больше подходит для обновлений с использованием физики. Функция Unity
@@ -50,7 +55,7 @@ public class Player : MonoBehaviour
     private void StateUpdate()
     {
         //Cоздаем невидимый круг вокруг объекта, который проверяет столкновение с другими объектами слоя groundLayer
-        onGrounded = Physics2D.OverlapCircle(legsRayPos.position, checkRadius, groundLayer); //Один из способов проверить землю под ногами. 
+        onGrounded = Physics2D.OverlapCircle(legsPos.position, checkRadius, groundLayer); //Один из способов проверить землю под ногами. 
         //onGrounded = true если есть столкновение
     }
 
