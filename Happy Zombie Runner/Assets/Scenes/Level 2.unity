@@ -130,11 +130,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3904818606738306963, guid: 7bd4483034caad642adfa82048339d2f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.388
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904818607346746112, guid: 7bd4483034caad642adfa82048339d2f,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.006675273
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904818607346746112, guid: 7bd4483034caad642adfa82048339d2f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.3997416
+      objectReference: {fileID: 0}
     - target: {fileID: 3904818607346746113, guid: 7bd4483034caad642adfa82048339d2f,
         type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 250693192}
+    - target: {fileID: 3904818607346746113, guid: 7bd4483034caad642adfa82048339d2f,
+        type: 3}
+      propertyPath: checkRadius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3904818607346746125, guid: 7bd4483034caad642adfa82048339d2f,
         type: 3}
       propertyPath: m_Name
@@ -143,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 3904818607346746126, guid: 7bd4483034caad642adfa82048339d2f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.579
       objectReference: {fileID: 0}
     - target: {fileID: 3904818607346746126, guid: 7bd4483034caad642adfa82048339d2f,
         type: 3}
@@ -1397,6 +1417,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426015004181734986, guid: 3bf296eee0509314ba617b2ffb2e2257,
+        type: 3}
+      propertyPath: speed
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426015005549464989, guid: 3bf296eee0509314ba617b2ffb2e2257,
+        type: 3}
+      propertyPath: speed
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426015005675446300, guid: 3bf296eee0509314ba617b2ffb2e2257,
+        type: 3}
+      propertyPath: speed
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5775879769058005315, guid: 3bf296eee0509314ba617b2ffb2e2257,
         type: 3}
