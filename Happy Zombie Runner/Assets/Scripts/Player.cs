@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float forceOfJump = 6f;
+    public SpriteRenderer[] keysSprites;
     private SpriteRenderer sprite;
     private Animator animator;
     private Rigidbody2D rb2D;
@@ -31,10 +32,6 @@ public class Player : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void Start()
-    {
-        
-    }
 
     // FixedUpdate - больше подходит для обновлений с использованием физики. Функция Unity
     private void FixedUpdate()
@@ -103,6 +100,18 @@ public class Player : MonoBehaviour
         else
         {
             animator.SetBool("grounded", true);
+        }
+    }
+
+    public void GetKey(string key, SpriteRenderer keySprite)
+    {
+        for (int i = 0; i < keysSprites.Length; i++)
+        {
+            if (keysSprites[i].name == key)
+            {
+                keysSprites[i].sprite = keySprite.sprite;
+                break;
+            }
         }
     }
 
